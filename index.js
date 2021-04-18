@@ -68,12 +68,12 @@ client.connect(err => {
         res.send(result.deletedCount>0)})
     })
     app.patch('/update/:id',(req,res)=>{
-      console.log(req.params.id)
-      const newStatus = req.body;
+      console.log(req.body.status)
+      const newStatus = req.body.status; 
       orderCollection.updateOne({_id: ObjectId(req.params.id)},{
         $set:{status:newStatus}
-       
-      })
+      }
+      )
       .then(result=>{
         console.log(result)
         res.send(result.modifiedCount>0)})
